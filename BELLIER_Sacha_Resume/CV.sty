@@ -1,0 +1,280 @@
+
+%................................................................
+%
+% 
+%                               Libs
+%_______________________________________________________________
+
+\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
+\renewcommand\familydefault{\sfdefault}
+
+\usepackage{fontawesome}
+\setlength{\parindent}{0cm}
+\usepackage{paracol}
+\usepackage{ifthen}
+
+\usepackage[outline]{contour}
+\usepackage{float}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabto}
+
+\usepackage{graphicx}
+\usepackage{svg}
+
+\usepackage[default]{raleway}
+\usepackage{changepage}
+\usepackage{pifont}
+\usepackage{geometry}
+
+\definecolor{bleudefrance}{rgb}{0.19, 0.55, 0.91}
+
+\usepackage[
+    hidelinks,
+    colorlinks=true,
+    linkcolor=red
+]{hyperref}
+
+\newcommand{\linktext}[2]{\href{#1}{\color{bleudefrance}\underline{#2}}}
+
+%................................................................
+%
+%                               Tikz
+%_______________________________________________________________
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{fadings}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.misc,positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds} 
+\usetikzlibrary{shadings}
+\usetikzlibrary{calendar} 
+\usetikzlibrary{er}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes} 
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{decorations}
+\usetikzlibrary{topaths}
+
+%................................................................
+%
+%                               Text basic
+%_______________________________________________________________
+
+% avoid line overflow
+\setlength{\emergencystretch}{2pt}
+
+\hyphenpenalty=10000
+
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.23\textwidth}
+\setlength{\rightcolwidth}{0.75\textwidth}
+
+%................................................................
+% 
+%                               Sections / Utils
+%_______________________________________________________________
+
+\usepackage{titlesec}
+
+% Format of the section titles
+\titleformat{\section}{
+\scshape\Large\raggedright}{}{0em}{}[\titlerule] % smallcaps, Large, continuous line - looks better if two columns, might look a bit too dramatic if just one ;) 
+\titlespacing{\section}{0pt}{12pt}{5pt} % Spacing around titles {<left spacing>}{<before spacing>}{<after spacing>}
+
+\newcommand{\cvkeyword}[3]{
+ \colorbox{#2}{\textcolor{#3}{#1}} \phantom{}%
+}
+ 
+\newcommand{\cvtag}[1]{% from alta-cv: https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv
+  \tikz[baseline]\node[draw=black!40,rounded corners,inner sep=0.4em]{\color{black!50}#1};
+}
+
+%................................................................
+% 
+%                               Switch
+%_______________________________________________________________
+\usepackage{xifthen}
+\newcommand{\ifequals}[4]{\ifthenelse{\equal{#1}{#2}}{#3}}
+\newcommand{\case}[2]{#1 #2} % Dummy, so \renewcommand has something to overwrite...
+\newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
+
+%................................................................
+%
+%                               Text
+%_______________________________________________________________
+\newif\ifen
+\newif\iffr
+
+\newcommand{\langen}[1]{\ifen#1\fi}
+\newcommand{\langfr}[1]{\iffr#1\fi}
+
+\newcommand{\cvsidetext}[1]{\color{cvcolor_side_text}{#1}}
+\newcommand{\cvmaintext}[1]{\color{cvcolor_main_text}{#1}}
+\newcommand{\cvtitletext}[1]{\color{cvcolor_title_text}{#1}}
+\newcommand{\cvboxtext}[1]{\color{cvcolor_info_box_font}{#1}}
+
+\newcommand{\sellang}[2]{\langfr{#1}\langen{#2}}
+
+\newcommand{\cvsidelang}[2]{\cvsidetext{\sellang{#1}{#2}}}
+\newcommand{\cvmainlang}[2]{\cvmaintext{\sellang{#1}{#2}}}
+\newcommand{\cvtitlelang}[2]{\cvtitletext{\sellang{#1}{#2}}}
+\newcommand{\cvboxlang}[2]{\cvboxtext{\sellang{#1}{#2}}}
+
+\newcommand{\cvheadertext}[2]{\color{textheadercolor}\sellang{#1}{#2}}
+
+\newcommand{\infobox}[1]{\colorbox{cvcolor_info_box_box}{\color{cvcolor_info_box_font}#1}}
+
+%----------------------------------------------------- font highlighting / boxes with background color 
+\newcommand{\bg}[3]{\colorbox{#1}{\bfseries\color{#2}#3}}
+\newcommand{\bgupper}[3]{\colorbox{#1}{\color{#2}\huge\bfseries\MakeUppercase{#3}}}
+
+%................................................................
+% 
+%                               Skils
+%_______________________________________________________________
+\newcommand{\cvskil}[1]{\cvsidetext{#1}}
+\newcommand{\cvskilv}[2]{\includesvg[width=0.3cm]{#2} \cvsidetext{#1}}
+\newcommand{\cvskilg}[2]{\includegraphics[width=0.3cm]{#2} \cvsidetext{#1}}
+
+%................................................................
+% 
+%                               Pictures
+%_______________________________________________________________
+\newcommand{\roundpic}[1]{\begin{figure}[H]\tikz  \draw [path picture={ \node at (path picture bounding box.center){\includegraphics[width=4.85cm]{#1}} ;}] (0,2) circle (2.4) ;\end{figure}}
+
+\newcommand{\squarepic}[1]{\begin{figure}[H]\tikz  \draw [path picture={ \node at (path picture bounding box.center){\includegraphics[width=4.85cm]{#1}} ;}] (0,0) - - (-2,2) - - (0,4) - - (2,2) - - cycle ;\end{figure}}
+
+\newif\ifphoto
+
+\newcommand{\cvphotor}[1]{\ifphoto\roundpic{#1}\fi}
+\newcommand{\cvphotol}[1]{\ifphoto\includegraphics[width=4.85cm]{#1}\fi}
+
+%................................................................
+%
+%                               Picto
+%_______________________________________________________________
+\newcommand{\icon}[3]{\phantom{x}{#3\color{#2}#1}\phantom{x}}
+\newcommand{\iconl}[1]{\phantom{x}{\color{cvcolor_icon}#1}\phantom{x}}
+
+\newcommand{\bubblediagram}[1]{\smartdiagram[bubble diagram]{#1}}
+
+\newcommand{\skillbubble}[2]{%
+\begin{tikzpicture}%
+\draw[draw=none,fill=#1] (0,0) circle (0.#2);%
+\end{tikzpicture}%
+}
+
+\newcommand{\hobbyicon}[5]{%
+\begin{tikzpicture}%
+\draw[draw=none,fill=#3] (0,0) circle (0.5);%
+\node[](icon) at (0,0) {#4#1};%
+\node[below=#5,align=center] at (icon) {#2};%
+\end{tikzpicture}
+}
+
+\newcommand{\infobubble}[4]{
+\scalebox{1.3}{
+\begin{tikzpicture}
+\draw[draw=#2,fill=#2] (0,0) circle (0.2cm);
+\node[] at (0,0) {\color{#3}\textbf{#1}};
+\node[right=0.2cm] at (0,0) {\texttt{#4}};
+\end{tikzpicture}
+}
+}
+
+%................................................................
+% 
+%                               Rules/Separator
+%_______________________________________________________________
+\newcommand{\dashrule}[2]{\begin{figure}[H]\begin{minipage}[t]{#1\textwidth}\tikz \draw[loosely dashed,#2] (0pt,0pt) -- (\textwidth,0pt);\end{minipage}\end{figure}}
+
+\newcommand{\dotrule}[2]{\begin{figure}[H]\begin{minipage}[t]{#1\textwidth}\tikz \draw[loosely dotted, ultra thick,#2] (0,0) -- (\textwidth,0);\end{minipage}\end{figure}}
+
+%................................................................
+% 
+%                               Events
+%_______________________________________________________________
+\usepackage{scrextend}
+
+\newcommand{\cvdegree}[5]{#1 & \textbf{#2} \newline #3 ~\iconl{\faMapMarker} & \raisebox{-0.7\height}{\includegraphics[height=#4]{#5}}}
+\newcommand{\cvexppro}[7]{#1 & \textbf{#2} \newline \textbf{#3} \newline #4 $\cdot$ #5 ~\iconl{\faMapMarker} \vspace{0.5em} \newline \noindent #6 & \hspace{-1.5cm}\raisebox{-0.75\height}{\includegraphics[width=2.2cm]{#7}}}
+
+\newcommand{\oldevent}[5]{%
+{%
+\draw[draw=black, line width=0.2em,anchor=west] (0,#1) -- (#5,#1);%
+\node[fill=#2,right,inner sep=0.5em] 	at (#5,#1) {\textbf{#3}~~#4 };%
+} % startpunkt #1. Farbe #2, Detaildatum #3, Beschreibung #4, Entfernung von Timeline #5
+}
+\newcommand{\oldcvevent}[6]{{#1} & \textbf{#2}\newline\textsc{#3} $\cdot$ {#4 ~\faMapMarker}\newline{\color{black!70}\footnotesize #5}\vspace{1.5em} & \raisebox{-0.7\height}{\includegraphics[height=1cm]{#6}}}
+\newcommand{\oldcvdegree}[6]{{#1} & \textbf{#2}\newline\textsc{#3} $\cdot$ {#4 {\phantom{i}\footnotesize ~\faUniversity}}\newline{\color{black!70}\scriptsize #5}\vspace{0.5em} & \raisebox{-0.7\height}{\includegraphics[height=0.5cm]{#6}}}
+
+%................................................................
+%
+%                               CV
+%_______________________________________________________________
+\newcommand{\barrule}[3]{\hspace{0.5em}
+{\color{#3}\rule[\baselineskip]{#1\textwidth}{#2}}\vspace{0.5em}
+}
+
+\newcommand{\simpleheader}[4]{
+    \tikz[remember picture,overlay]
+    {
+        \node[rectangle, fill=headercolor, anchor=north, minimum width=\paperwidth, minimum height=3.0cm](header) at (current page.north){};
+        
+        \node[draw=none, align=left](name) at (header) {
+            {\Huge \color{nameheadercolor} #1 \textbf{#2}}
+        };
+        
+        \node[draw=none, below](description) at (name.south) {\color{textheadercolor}#3}; 
+    }
+}
+
+\newif\ifheader
+
+%................................................................
+%
+%                               Application
+%_______________________________________________________________
+%..... Spontaneous
+\newif\ifSpontaneous
+\newcommand{\whenSpontaneous}[1]{\ifSpontaneous#1\fi}
+%..... NotExperianced
+\newif\ifNotExperianced
+\newcommand{\whenNotExperianced}[1]{\ifNotExperianced#1\fi}
+%..... CompagnyName
+\newif\ifCompagnyName
+\newcommand{\whenCompagnyName}[1]{\ifCompagnyName#1\fi}
+%..... AvailableLoc
+\newif\ifAvailableLoc
+\newcommand{\whenAvailableLoc}[1]{\ifAvailableLoc#1\fi}
+%..... AlwaysGraphics
+\newif\ifAlwaysGraphics
+\newcommand{\whenAlwaysGraphics}[1]{\ifAlwaysGraphics#1\fi}
+
+%..... Verbose
+\newif\ifVerbose
+\newcommand{\whenVerbose}[1]{\ifVerbose#1\fi}
+
+\newif\ifAcademicProjects
+\newcommand{\whenAcademicProjects}[1]{\ifAcademicProjects#1\fi}
+\AcademicProjectsfalse
+
+%..... suject
+\def\SubjectEmbedded{SUBJECT_EMBEDDED}
+\def\SubjectGraphics{SUBJECT_GRAPHICS}
+
+\def\CurrentSubject{SUBJECT_EMBEDDED}
+
+\newcommand{\whenSubjectEmbedded}[1]{\ifx\CurrentSubject\SubjectEmbedded#1\fi}
+\newcommand{\whenSubjectGraphics}[1]{\ifx\CurrentSubject\SubjectGraphics#1\fi}
+
+%................................................................
+%
+%                               Hobbies
+%_______________________________________________________________

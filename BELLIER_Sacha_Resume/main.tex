@@ -1,0 +1,601 @@
+\documentclass[classiclight]{CV}
+
+%................................................................
+%
+%                               Config
+%_______________________________________________________________
+
+\def\ProfilEN
+{
+    I am a creative person, passionate about flight systems, looking to work within a dynamic team. Always ready to learn new things and take initiative, I am keen to participate in a project that brings together many fields of engineering.
+
+    Currently finishing my end-of-studies internship, I will be available from the 
+    \textbf{beginning of September 2024}.
+}
+\def\ProfilFR
+{
+    Je suis une personne créative, passionnée par l'aéronautique et l'exploration spatiale, souhaitant travailler avec une équipe dynamique. Toujours prêt à apprendre de nouvelles choses et à prendre des initiatives, je suis désireux de participer à un projet qui regroupe de nombreux domaines de l'ingénierie.
+
+    Terminant actuellement mon stage de fin d'études, je serais disponible à partir de \textbf{début septembre 2024}.
+}
+
+\ifdefined\gen
+    \frfalse
+    \enfalse
+    \photofalse
+    \headertrue
+    \CompagnyNamefalse
+    \Verbosefalse
+    \AcademicProjectsfalse
+\else
+    \headertrue
+    \def\langseten{}
+    %\def\usephoto
+    \AvailableLocfalse
+    \def\CurrentSubject{SUBJECT_EMBEDDED} % SUBJECT_GRAPHICS SUBJECT_EMBEDDED
+    \Verbosefalse
+    \AcademicProjectstrue
+\fi
+
+\ifdefined\langsetfr
+    \frtrue
+\fi
+
+\ifdefined\langseten
+    \entrue
+\fi
+
+\ifdefined\usephoto
+    \phototrue
+\fi
+
+\ifdefined\verbosemode
+    \Verbosetrue
+\fi
+
+%................................................................
+%
+%                               Setup
+%_______________________________________________________________
+% A4 => 210 * 297
+\newgeometry{
+    total={200mm,282mm},
+    left=5mm,
+    top=10mm,
+}
+
+%................................................................
+%
+%                               Begin
+%_______________________________________________________________
+\title{CV}
+\author{Sacha BELLIER}
+\date{2023}
+
+\pagestyle{empty}
+\begin{document}
+
+%................................................................
+%
+%                               Header
+%_______________________________________________________________
+\ifheader
+    \section*{Start}
+        \simpleheader{Sacha}{BELLIER}
+        {
+            \cvheadertext
+            {
+                Master 2 - Ingénieur Informatique \whenSubjectEmbedded{Embarquée}\whenSubjectGraphics{Bas-niveau}
+            }
+            {
+                Master 2 - \whenSubjectEmbedded{Embedded}\whenSubjectGraphics{Low-Level} Software Engineer
+            }
+        }
+    
+    \vspace{1.4cm}
+\fi
+
+%................................................................
+%
+%                               Paracol Setup
+%_______________________________________________________________
+\setlength{\columnsep}{1.5cm}
+\columnratio{0.3}[0.7]
+\begin{paracol}{2}
+\hbadness10000
+\paracolbackgroundoptions
+
+
+%................................................................
+%
+%                               Paracol -- Photo
+%_______________________________________________________________
+
+\small
+
+\begin{center}
+    \cvphotor{Assets/BELLIER_Sacha_Photo_CV.jpg}
+    \ifphoto\bigskip\fi
+\end{center}
+
+\begin{flushleft}
+
+%................................................................
+%
+%                               Paracol -- Infos
+%_______________________________________________________________
+
+\infobox{
+        \cvboxlang
+        {Informations personnelles}
+        {Personal Information}
+    }\\[0.5em]
+
+    \iconl{\faUser} \cvsidelang{Sacha BELLIER}{Sacha BELLIER} \newline
+    
+    \medskip
+    
+    \iconl{\faAt}\small         \cvsidelang{bellier.sacha2@gmail.com}{bellier.sacha2@gmail.com}\newline
+    \iconl{\faLinkedin}\small   \cvsidelang{\linktext{https://linkedin.com/in/sacha-bellier}{sacha-bellier}}{\linktext{https://linkedin.com/in/sacha-bellier}{sacha-bellier}} \newline
+    \iconl{\faPhone}\small      \cvsidelang{+33 781 699 946}{+33 781 699 946} \newline
+    \iconl{\faCar}\small        \cvsidelang{Permis B}{Driving License} \newline
+
+    \bigskip
+    
+%................................................................
+%
+%                               Paracol -- Languages
+%_______________________________________________________________
+    
+    \infobox{\cvboxlang{Langues}{Languages}} \\[0.5em]
+    
+    \begin{itemize}[leftmargin=*]
+        %\item[\ding{120}] \cvsidelang{Français: Langue native}{French: Native}
+        \item[\ding{120}] \cvsidelang{Français}{French}
+        %\item[\ding{120}] \cvsidelang{Anglais: TOEIC 820}{English: TOEIC 820}
+        \item[\ding{120}] \cvsidelang{Anglais}{English}
+    \end{itemize}
+    
+    \bigskip
+
+%................................................................
+%
+%                               Paracol -- Skils
+%_______________________________________________________________
+
+    \infobox{\cvboxlang{Compétences}{Skils}} \\[0.5em]
+    \begin{itemize}[leftmargin=*]
+        \item[\ding{120}] \cvskil{Modern C++ | C++20}
+        \item[\ding{120}] \cvskil{Embedded C}
+        \item[\ding{120}] \cvskil{git}
+        \item[\ding{120}] \cvskil{bash | python | lua}
+        \whenSubjectEmbedded
+        {
+            \item[\ding{120}] \cvskil{STM32 | stlink | gdb-multiarch}
+        }
+        \item[\ding{120}] \cvskil{gdb | sanitizer | clang-format/tidy}
+        \item[\ding{120}] \cvskil{Latex | Markdown}
+        \item[\ding{120}] \cvskil{Linux | Windows | WSL}
+    \end{itemize}
+
+    \medskip
+    
+    \infobox{\cvboxtext{Build / Remote / CI}} \\[0.5em]
+    \begin{itemize}[leftmargin=*]
+        \item[\ding{120}] \cvskilv{Bazel}{Assets/SkilsLogo/bazel.svg}
+        \item[\ding{120}] \cvskilv{Buildkite}{Assets/SkilsLogo/buildkite.svg} | \cvskilv{BuildBuddy}{Assets/SkilsLogo/buildbuddy.svg}
+        \item[\ding{120}] \cvskilv{Github Workflows}{Assets/SkilsLogo/github.svg} | \cvskil{Gitlab CI}
+        \item[\ding{120}] \cvskil{Docker}
+        \item[\ding{120}] \cvskilg{Premake}{Assets/SkilsLogo/premake.png} | \cvskil{CMake}
+    \end{itemize}
+
+    \medskip
+
+    \infobox{\cvboxlang{Outils}{Tools}} \\[0.5em]
+    \begin{itemize}[leftmargin=*]
+        \item[\ding{120}] \cvskilv{VSCode}{Assets/SkilsLogo/vscode.svg} | \cvskil{Visual Studio}
+        \item[\ding{120}] \cvskilv{Github}{Assets/SkilsLogo/github.svg}
+        \item[\ding{120}] \cvskil{Jira | Bitbucket}
+
+        \whenSubjectEmbedded
+        {
+            \item[\ding{120}] \cvskil{STM32CubeMX | PlatformIO}
+            \item[\ding{120}] \cvskil{PCB: KiCad}
+        }
+        
+        \item[\ding{120}] \cvskil{CAD: Fusion360}
+    \end{itemize}
+    
+    \bigskip
+
+%................................................................
+%
+%                               Paracol -- Hobbies/Associative
+%_______________________________________________________________
+
+    \infobox{\cvboxlang{Centres d'intérêt/Associatif}{Hobbies/Associative}} \\[0.5em]
+    
+    \begin{itemize}[leftmargin=*]
+        \item[\ding{120}] \cvsidelang{Aréomodélisme | Drone FPV}{Aeromodelling | FPV Drone}
+        \item[\ding{120}] \cvsidelang{FabLab}{FabLab | DIY for Escape-game}
+        \item[\ding{120}] \cvsidelang{Électronique}{Electronics | DIY}
+        \item[\ding{120}] \cvsidelang{Impression 3D | CNC}{3D Printing | CNC}
+    \end{itemize}
+
+    \bigskip
+    
+\end{flushleft}
+
+\bigskip
+
+%................................................................
+%
+%                               Paracol -- Close
+%_______________________________________________________________
+
+\switchcolumn
+
+%................................................................
+%
+%                               No Header Init
+%_______________________________________________________________
+
+\ifheader
+\else
+    \Huge Sacha BELLIER
+    
+    \bigskip
+    
+    \large \cvmainlang
+    {
+        Master 2 - Ingénieur Informatique \whenSubjectEmbedded{Embarqué}\whenSubjectGraphics{Bas-niveau}
+    }
+    {
+        Master 2 - \whenSubjectEmbedded{Embedded}\whenSubjectGraphics{Low-Level} Software Engineer
+    }
+    \medskip
+\fi
+
+%................................................................
+%
+%                               Profil
+%_______________________________________________________________
+
+\small \section*{Profil}
+\cvmainlang
+{
+\ProfilFR
+\whenAvailableLoc{\textbf{Disponible sur toute la France et le Monde}.}
+}
+{
+\ProfilEN
+\whenAvailableLoc{\textbf{Available across France and the world}.}
+}
+
+\medskip
+
+%................................................................
+%
+%                               Professional experiences
+%_______________________________________________________________
+
+\section*{\cvmainlang{Expériences professionnel}{Professional experiences}}
+\begin{tabular}{r| p{0.55\textwidth} c}
+
+    \cvexppro
+        {2024}
+        {Thales}
+        {\cvmainlang{Simulation d'asservissement}{Simulation of Guidance and Control}}
+        {\cvmainlang{Stage de fin d'étude}{End-of-Studies Internship}}
+        {Élancourt}
+        {
+            \cvmainlang
+                {
+                    Projet en \textbf{C++14} servant de banc de simulation. Génération de trajectoires réalistes dans un repère \textbf{WGS84} avec la librairie \textbf{Eigen}.
+    
+                    \vspace{0.4em}
+                    \textbf{Initiative}: Mise en place et présentation de \textbf{Bazel} avec \textbf{Remote Build (bazel-buildfarm)}.
+                }
+                {
+                    A \textbf{C++14} project used as test bench. Generation of realistic trajectories, using the \textbf{Eigen} library, in the \textbf{WGS84} coordinate system.
+    
+                    \vspace{0.4em}
+                    \textbf{Initiative}: Setup and presentation of \textbf{Bazel} with \textbf{Remote Build/Cache} on \textbf{Bazel-BuildFarm}.
+                    \ifVerbose
+                    
+                    Integration with RedHat's devtools and the project's own toolchain.
+                    \fi
+                }
+        }
+        {Assets/Compagny/thales.png} \vspace{1.2em} \\
+        
+    \cvexppro
+        {2023}
+        {KRONO-SAFE}
+        {\cvmainlang{Contrôle en temps réel d'un bras Robot}{Real-time Control of a Robot Arm}}
+        {\cvmainlang{Projet de fin d'étude}{End-of-Studies Project}}
+        {Paris}
+        {
+            \cvmainlang
+                {
+                    Projet basé sur une carte \textbf{Zynq UltraScale+}. Développé en PsyC, un langage temps réel. Création de \textbf{Fenêtres de temps} validées par simulation afin de garantir le \textbf{temps réel} et le \textbf{déterminisme}.
+                    
+                    Développement d'un \textbf{driver I2C} pour interfacer une carte d'extension PWM. Réception de commandes Gcode via \textbf{UART}.
+                }
+                {
+                    Project based on a \textbf{Zynq UltraScale+} development board. Developed in PsyC, a real-time language. Creation of \textbf{Timing windows} validated through simulation to guarantee \textbf{real-time} and \textbf{determinism}.
+                    
+                    Development of a custom \textbf{I2C driver} to interface a PWM extension card. Receiving Gcode commands via \textbf{UART}.
+                }
+        }
+        {Assets/Compagny/krono-safe.jpg} \vspace{1.2em} \\
+
+    \cvexppro
+        {2022}
+        {CNRS, Digital Holography Foundation}
+        {\cvmainlang{Holographie oculaire en temps réel, CUDA}{Real-time eye Holography, CUDA}}
+        {\cvmainlang{Stagiaire - 6 mois}{Intern - 6 months}}
+        {Paris}
+        {
+            \cvmainlang
+            {
+                Projet en \textbf{C++20} et \textbf{CUDA} pour calculer un hologramme en temps réel.
+                Utilisation de calculs parallèles et d'exécutions asynchrones.
+                
+                L'interface a été faite en \textbf{Qt4}.
+            }
+            {
+                A \textbf{C++17} and \textbf{CUDA} program to process an hologram in real-time.
+
+                Use of parallel computing and asynchronous execution.
+                
+                The UI was made using \textbf{Qt4}.
+            }
+        }
+        {Assets/Compagny/CNRS.jpg} 
+
+\end{tabular}
+
+\medskip
+
+%................................................................
+%
+%                               Projects
+%_______________________________________________________________
+
+\ifVerbose
+\else
+
+\section*{\cvmainlang{
+        Projets personnel \hspace{.4em} (\faGithub \hspace{.18em} \linktext{https://github.com/0-Sacha}{0-Sacha})
+    }{
+        Personnal projects \hspace{.4em} (\faGithub \hspace{.18em} \linktext{https://github.com/0-Sacha}{0-Sacha})}
+    }
+    
+\begin{tabular}{>{\small\bfseries}l c >{\small}p{0.85\textwidth}}
+    
+    \cvmaintext{\sellang{Entity Component System}{Entity Component System}}
+        & (\linktext{https://github.com/0-Sacha/LittleECS}{\sellang{lien}{link}})
+        & | \textbf{C++20 templates/concepts}, \textbf{Bazel}, \textbf{CI} \vspace{.08em} \\
+
+    \cvmaintext{\sellang{Logger \& Sérialiseur Générique}{Templated String Serializer \& Logger}}
+        & (\linktext{https://github.com/0-Sacha/ProjectCore}{\sellang{lien}{link}})
+        & | \vspace{.8em} \\
+
+
+    \cvmaintext{\sellang{Simple Moteur de Jeu}{Simple Game Engine}}
+        &  
+        & C++20, glm, OpenGL, GLFW, ImGui \vspace{.08em} \\
+
+    \cvmaintext{\sellang{RayTracer sur CPU}{CPU-based RayTracer}}
+        &  
+        & C++20, glm, Vulkan, ImGui \vspace{.8em} \\
+
+
+    \cvmaintext{\sellang{Rédaction: IMU et Kalman Filter}{Redaction: IMU and Kalman Filter}}
+        & (\linktext{https://github.com/0-Sacha/mpu6050_kalman}{\sellang{lien}{link}})
+        & | Embedded C/C++20, STM32, \textbf{Eigen} \vspace{.08em} \\
+
+    \cvmaintext{\sellang{Self-balancing robot}{Self-balancing device}}
+        & 
+        & | \vspace{.08em} \\
+        
+\end{tabular}
+\fi
+
+%................................................................
+%
+%                               Degree
+%_______________________________________________________________
+
+\section*{\cvmainlang{Formation}{Degree}}
+\begin{tabular}{r p{0.4\textwidth} c}
+
+\cvdegree
+    {2019 - 2024}
+    {\cvmainlang{Master - Ingénieur en informatique}{Master's Degree - Computer Engineering}}
+    {Epita, Paris, France}
+    {0.9cm}
+    {Assets/Epita.png} \vspace{1.2em} \\
+
+\cvdegree
+    {2021}
+    {\cvmainlang{Semestre à l'étranger Erasmus}{Erasmus semester abroad}}
+    {\cvmainlang{Vilnius Gediminas Technical University, Vilnius, Lithuanie}{Vilnius Gediminas Technical University, Vilnius, Lithuania}}
+    {0.6cm}
+    {Assets/Vilnius.png}
+        
+\end{tabular}
+
+\medskip
+
+%................................................................
+%
+%                               Final Footer
+%_______________________________________________________________
+
+\begin{center}
+\small
+\icon{\faPhone}{cvcolor_final_icon}{} +33 781 699 946
+\icon{\faAt}{cvcolor_final_icon}{} {bellier.sacha2@gmail.com}
+\end{center}
+
+\newpage
+
+\end{paracol}
+
+%................................................................
+%
+%                               Projects Page
+%_______________________________________________________________
+
+\ifVerbose
+    
+    \restoregeometry
+    
+    \newgeometry{
+        total={170mm,257mm},
+        left=20mm,
+        top=20mm,
+    }
+    
+    \section*{\cvmainlang{
+        Projets personnel \hspace{.4em} (\faGithub \hspace{.18em} \linktext{https://github.com/0-Sacha}{0-Sacha})
+    }{
+        Personnal projects \hspace{.4em} (\faGithub \hspace{.18em} \linktext{https://github.com/0-Sacha}{0-Sacha})}
+    }
+    
+    \begin{tabular}{>{\small\bfseries}l p{0.8\textwidth} c}
+    
+        \cvmaintext{
+        \linktext{https://github.com/0-Sacha/LittleECS}{
+            \sellang{Entity Component System}{Entity Component System}
+        }} &
+            \textbf{C++20 requires/concepts}
+            \newline Template-Metaprogramming / Static, Dynamic Polymorphism
+            \newline C++ Iterators
+            \newline \textbf{Bazel}: Build / Test
+            \newline \textbf{CI: Github Workflows, Buildkite, and Buildbuddy} 
+            \newline \textbf{Remote Build: Buildkite and Buildbuddy}
+            \vspace{1.4em} \\
+
+        \cvmaintext{
+        \linktext{https://github.com/0-Sacha/ProjectCore}{
+            \sellang{Sérialiseur Générique}{Templated String Serializer}
+        }} &
+            \textbf{C++20 requires/concepts}
+            \newline Template-Metaprogramming / Static Polymorphism
+            \newline Design Patterns (Factory, CRTP, Strategy, ...)
+            \newline \textbf{Bazel}: Build / Test
+            \newline \textbf{CI: Github Workflows, Buildkite, and Buildbuddy}
+            \newline \textbf{Remote Build: Buildkite and Buildbuddy}
+            \vspace{1.4em} \\
+    
+    \whenSubjectEmbedded
+    {
+        \cvmaintext{
+        \linktext{https://github.com/0-Sacha/mpu6050_kalman}{
+            \sellang {Rédaction: IMU et Kalman Filter}{Redaction: IMU and Kalman Filter}
+        }} &
+            \textbf{Embedded C / C++20} on \textbf{STM32}
+            \newline \sellang{\textbf{Filtre Kalman} réalisé sur Eigen}{\textbf{Kalman Filter} made on Eigen}.
+            \newline \textbf{I2C} to interact with an \textbf{IMU}; \textbf{UART} for telemetry.
+            \newline Hardware Timer based software.
+            \vspace{1.4em} \\
+            
+
+        \cvmaintext{
+            \sellang {Self-balancing robot}{Self-balancing robot}
+        } &
+            \textbf{Embedded C / C++20} on \textbf{STM32}
+            \newline \sellang{\textbf{Contrôleur PID} et Filtres (\textbf{Kalman}, Low Pass) réalisés sur Eigen}{\textbf{PID controller} and Filters (\textbf{Kalman}, Low Pass) made on Eigen}.
+            \newline \textbf{I2C} to interact with an \textbf{IMU}.
+            \newline Hardware Timer / Interrupt based software.
+            \newline \textbf{Bazel}: Build \sellang{sur une toolchain}{with an} \textbf{arm-none-eabi} \sellang{}{toolchain}
+            \vspace{1.4em} \\
+
+        \cvmaintext{
+           CPU Raytracer / Game Engine
+        } &
+            \textbf{C++20}
+            \newline OpenGL / GLSL, ImGui, GLFW
+            \newline math \sellang{sur}{using} glm
+            \newline Design Patterns (Abstract Factory, Strategy, Singleton, ...)
+            \newline \sellang{Compilé à l'aide de Visual Studio et Premake}{Compiled using Visual Studio and Premake}.
+            \vspace{1.4em} \\
+    }
+
+    \whenSubjectGraphics
+    {
+        \cvmaintext{
+        \linktext{https://github.com/0-Sacha/RayTracer}{
+            \sellang {Raytracer sur CPU}{CPU Raytracer}
+        }} &
+            \textbf{C++20}
+            \newline ImGui, Vulkan
+            \newline math \sellang{sur}{using} glm
+            \newline \sellang{Compilé à l'aide de Visual Studio et Premake}{Compiled using Visual Studio and Premake}.
+            \vspace{1.4em} \\
+
+        \cvmaintext{
+        \linktext{https://github.com/0-Sacha/Blackbird}{
+            \sellang {Moteur de Jeu}{Game Engine}
+        }} &
+            \textbf{C++20}
+            \newline OpenGL / GLSL, ImGui, GLFW
+            \newline math \sellang{sur}{using} glm
+            \newline Design Patterns (Abstract Factory, Strategy, Singleton, ...)
+            \newline \sellang{Compilé à l'aide de Visual Studio et Premake}{Compiled using Visual Studio and Premake}.
+            \vspace{1.4em} \\
+    }
+
+    \end{tabular}
+    
+        
+    \whenAcademicProjects
+    {
+        \section*{\cvmainlang{Projets académique}{Academic projects}}
+        
+        \begin{tabular}{>{\small\bfseries}l p{0.8\textwidth} c}
+        
+            \cvmainlang{Chiffrement sur STM32 (ARM)}{Encryption on STM32 (ARM)} &
+                \textbf{Embedded C} on an \textbf{STM32}
+                \newline \sellang{Chiffrement utilisant}{Encryption using} \textbf{mbedTLS}.
+                \newline \sellang{Interfaçage avec un script Python / communication UART}{Interfacing with a Python script / UART communication}.
+                \vspace{1.4em} \\
+    
+            \cvmainlang{Synthèse d'un ARM7TDMI}{Synthesis of an ARM7TDMI} &
+                \textbf{VHDL} \sellang{sur un}{on an} \textbf{Altera Cyclone}
+                \newline ModelSim, Intel Quartus Prime
+                \newline ARM CPU architecture (CPU pipeline / ALU / memory, ...) 
+                \vspace{1.4em} \\
+    
+            \cvmainlang{FreeRTOS Software PWM}{FreeRTOS Software PWM generation} &
+                \textbf{Embedded C} \sellang{sur une carte de développement STM32}{on an STM32 development board}.
+                \newline \sellang{Génération logicielle de signaux PWM sur \textbf{FreeRTOS}}{Software PWM generation using \textbf{FreeRTOS}'s Tasks}.
+                \newline \sellang{Télémétrie sur un écran LCD connecté via SPI}{Telemetry on an LCD connected via SPI}
+                \vspace{1.4em} \\
+    
+            \cvmainlang{Driver Linux pour un lecteur RFID}{Linux Driver for an RFID cards reader} &
+                C89
+                \newline Regmap API
+                \newline \sellang{Interface SPI entre un Raspberry Pi et un lecteur de cartes RFID}{SPI interface between a Raspberry Pi and an RFID cards reader}
+                \vspace{1.4em} \\
+    
+            \cvmainlang{Compilateur}{Compiler} &
+                Compiler for my school's internal language (similar to Ada)
+                \newline Parsing \sellang{utilisant}{using} Bison / Flex
+                \newline LLVM AST / Visitor Design Pattern
+                \vspace{1.4em} \\
+    
+            \cvmainlang{Linux temps-réel avec Yocto}{Yocto with real-time Linux} &
+                \textbf{PREEMPT\_RT} patch \sellang{pour}{for} Linux
+                \newline \sellang{Ajout et patch de jeux rétro à la distribution Yocto}{Add and patch retro games to the Yocto distribution}.
+                \vspace{1.4em}
+                    
+        \end{tabular}
+    }
+
+\fi
+
+\end{document}
